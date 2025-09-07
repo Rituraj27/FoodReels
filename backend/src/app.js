@@ -1,9 +1,14 @@
-import express, { application } from 'express';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import router from './routes/auth.routes.js';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('hello world');
-});
+// middlewares
+app.use(express.json());
+app.use(cookieParser());
+
+// routes
+app.use('/api/auth', router);
 
 export { app };
