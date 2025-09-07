@@ -1,20 +1,22 @@
-import mongoose from mongoose;
+import mongoose from 'mongoose';
 
-const foodPartnerSchema = new mongoose.Schema({
+const foodPartnerSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true,
-        lowercase: true,
-        unique: true,
+      type: String,
+      required: true,
+      lowercase: true,
+      unique: true,
     },
     password: {
-        type: String,
+      type: String,
     },
-   
-}, {timestamps: true})
+  },
+  { timestamps: true }
+);
 
-export const FoodPartner = mongoose.model('FoodPartner', foodPartnerSchema)
+export const FoodPartner = mongoose.model('FoodPartner', foodPartnerSchema);
