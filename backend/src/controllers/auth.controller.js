@@ -34,7 +34,8 @@ const registerUser = async (req, res) => {
 
     const token = jwt.sign(
       {
-        id: user._id,
+        _id: user._id,
+        role: 'user',
       },
       process.env.JWT_SECRET,
       {
@@ -94,6 +95,7 @@ const loginUser = async (req, res) => {
     const token = jwt.sign(
       {
         _id: user._id,
+        role: 'user',
       },
       process.env.JWT_SECRET,
       {
@@ -103,7 +105,7 @@ const loginUser = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      same: 'strict',
+      sameSite: 'strict',
       secure: false,
       maxAge: 60 * 60 * 1000,
     });
@@ -133,19 +135,32 @@ const logoutUser = (req, res) => {
     message: 'Logout successfully',
   });
 };
-
 // Food partner Registration
 const foodPartnerRegistration = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const {
+      businessName,
+      owner,
+      businessEmail,
+      phoneNumber,
+      address,
+      password,
+    } = req.body;
 
-    if (!name || !email || !password) {
+    if (
+      !businessName ||
+      !owner ||
+      !businessEmail ||
+      !phoneNumber ||
+      !address ||
+      !password
+    ) {
       return res.status(400).json({
         message: 'All fields are required',
       });
     }
 
-    const isAlreadyfoodPartner = await FoodPartner.findOne({ email });
+    const isAlreadyfoodPartner = await FoodPartner.findOne({ businessEmail });
 
     if (isAlreadyfoodPartner) {
       return res.status(400).json({
@@ -156,14 +171,18 @@ const foodPartnerRegistration = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const foodPartnerUser = await FoodPartner.create({
-      name,
-      email,
+      businessName,
+      owner,
+      businessEmail,
+      phoneNumber,
+      address,
       password: hashedPassword,
     });
 
     const token = jwt.sign(
       {
         _id: foodPartnerUser._id,
+        role: 'foodPartner',
       },
       process.env.JWT_SECRET,
       {
@@ -182,8 +201,8 @@ const foodPartnerRegistration = async (req, res) => {
       message: 'Registered successfully ✅',
       foodPartnerUser: {
         _id: foodPartnerUser._id,
-        name: foodPartnerUser.name,
-        email: foodPartnerUser.email,
+        name: foodPartnerUser.businessName,
+        email: foodPartnerUser.businessEmail,
       },
     });
   } catch (error) {
@@ -193,17 +212,16 @@ const foodPartnerRegistration = async (req, res) => {
     });
   }
 };
-
 // Food partner Login
 const foodPartnerLogin = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { businessEmail, password } = req.body;
 
-    if (!email || !password) {
+    if (!businessEmail || !password) {
       return res.status(400).json({ message: 'All fieds are required' });
     }
 
-    const foodPartnerUser = await FoodPartner.findOne({ email });
+    const foodPartnerUser = await FoodPartner.findOne({ businessEmail });
 
     if (!foodPartnerUser) {
       return res.status(400).json({
@@ -225,6 +243,7 @@ const foodPartnerLogin = async (req, res) => {
     const token = jwt.sign(
       {
         _id: foodPartnerUser._id,
+        role: 'foodPartner',
       },
       process.env.JWT_SECRET,
       {
@@ -243,8 +262,8 @@ const foodPartnerLogin = async (req, res) => {
       message: 'Login successfully ✅',
       foodPartnerUser: {
         _id: foodPartnerUser._id,
-        email: foodPartnerUser.email,
-        name: foodPartnerUser.name,
+        email: foodPartnerUser.businessEmail,
+        name: foodPartnerUser.businessName,
       },
     });
   } catch (error) {
@@ -254,7 +273,6 @@ const foodPartnerLogin = async (req, res) => {
     });
   }
 };
-
 // Food partner Logout
 const foodPartnerLogout = async (req, res) => {
   res.clearCookie('token', {

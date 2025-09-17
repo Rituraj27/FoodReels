@@ -1,0 +1,326 @@
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #000;
+  color: white;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.95),
+    rgba(236, 72, 153, 0.1)
+  );
+}
+
+.dashboard-header {
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.dashboard-header h2 {
+  color: #ec4899;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.nav-link:hover {
+  background-color: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+}
+
+.nav-link.active {
+  background-color: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+  font-weight: 500;
+}
+
+.dashboard-content {
+  /* padding: 2rem; */
+  overflow-y: auto;
+}
+
+.upload-form-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.upload-form-container h2 {
+  color: #ec4899;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-section {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.form-section:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(236, 72, 153, 0.3);
+}
+
+.upload-progress {
+  margin: 20px 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar {
+  height: 24px;
+  background-color: #ec4899;
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  transition: width 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.success-message {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: rgba(52, 211, 153, 0.2);
+  color: #34d399;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #34d399;
+  font-weight: 500;
+}
+
+.error-message {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #ef4444;
+  font-weight: 500;
+}
+
+.form-section h3 {
+  color: #ec4899;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  border-left: 3px solid #ec4899;
+  padding-left: 0.75rem;
+}
+
+.form-row {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* File upload styling */
+.file-input-container {
+  border: 2px dashed rgba(236, 72, 153, 0.5);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-input-container:hover {
+  border-color: #ec4899;
+  background-color: rgba(236, 72, 153, 0.1);
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.file-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.file-upload-icon {
+  width: 48px;
+  height: 48px;
+  color: #ec4899;
+}
+
+.file-upload-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+/* Form inputs */
+.input,
+.textarea,
+select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input:focus,
+.textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #ec4899;
+  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Custom select styling */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ec4899' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* Checkbox styling */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type='checkbox'] {
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid rgba(236, 72, 153, 0.5);
+  border-radius: 4px;
+  appearance: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.checkbox-label input[type='checkbox']:checked {
+  background-color: #ec4899;
+  border-color: #ec4899;
+}
+
+.checkbox-label input[type='checkbox']:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.8rem;
+}
+
+/* Ingredient row */
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Action buttons */
+.btn-primary,
+.btn-secondary {
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  min-width: 200px;
+  height: 48px;
+  font-size: 1.1rem;
+  background-color: #ec4899;
+  color: white;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background-color: #fb5ca5;
+  box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(236, 72, 153, 0.3);
+}
